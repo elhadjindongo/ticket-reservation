@@ -17,7 +17,7 @@ public class TicketUser {
     @OneToOne(cascade = CascadeType.PERSIST)
     private Wallet wallet;
 
-    @OneToMany
+    @OneToMany(mappedBy = "ticketUserID")
     private List<Orders> orders = new ArrayList<>();
 
 

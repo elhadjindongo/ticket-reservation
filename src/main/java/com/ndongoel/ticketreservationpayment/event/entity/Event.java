@@ -15,7 +15,7 @@ public class Event {
     private String description;
     private String location;
     private LocalDateTime date;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "eventID")
     private Collection<Seat> seats = new ArrayList<>();
 
 

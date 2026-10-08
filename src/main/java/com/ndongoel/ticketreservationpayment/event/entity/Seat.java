@@ -16,9 +16,8 @@ public class Seat {
     private Long id;
 
     //    seat(id, event_id, label, status, reserved_by, held_until, version)
-    @ManyToOne
-    @NotBlank
-    Event event;
+    @Column(nullable = false, name = "event_id")
+    long eventID;
     String label;
     @Enumerated(EnumType.STRING)
     SeatStatus status;
@@ -43,12 +42,12 @@ public class Seat {
         this.price = price;
     }
 
-    public Event getEvent() {
-        return event;
+    public long getEvent() {
+        return eventID;
     }
 
-    public void setEvent(Event event) {
-        this.event = event;
+    public void setEvent(long eventID) {
+        this.eventID = eventID;
     }
 
     public String getLabel() {
@@ -67,7 +66,7 @@ public class Seat {
         this.status = status;
     }
 
-    public LocalDateTime getHeld_until() {
+    public LocalDateTime getHeld_until(LocalDateTime localDateTime) {
         return held_until;
     }
 

@@ -3,6 +3,7 @@ package com.ndongoel.ticketreservationpayment;
 import com.ndongoel.ticketreservationpayment.event.entity.Event;
 import com.ndongoel.ticketreservationpayment.event.entity.Seat;
 import com.ndongoel.ticketreservationpayment.event.repository.EventRepository;
+import com.ndongoel.ticketreservationpayment.event.repository.SeatRepository;
 import com.ndongoel.ticketreservationpayment.user.model.TicketUser;
 import com.ndongoel.ticketreservationpayment.user.repository.TicketUserRepository;
 import com.ndongoel.ticketreservationpayment.wallet.enums.WalletStatus;
@@ -20,9 +21,12 @@ import java.util.Collections;
 @SpringBootApplication
 public class TicketReservationPaymentApplication implements CommandLineRunner {
 
-    public TicketReservationPaymentApplication(EventRepository eventRepository, TicketUserRepository ticketUserRepository) {
+    private final SeatRepository seatRepository;
+
+    public TicketReservationPaymentApplication(EventRepository eventRepository, TicketUserRepository ticketUserRepository, SeatRepository seatRepository) {
         this.eventRepository = eventRepository;
         this.ticketUserRepository = ticketUserRepository;
+        this.seatRepository = seatRepository;
     }
 
     public static void main(String[] args) {
@@ -38,17 +42,15 @@ public class TicketReservationPaymentApplication implements CommandLineRunner {
         event.setDescription("The Alamo show description");
         event.setDate(LocalDateTime.now());
         event.setLocation("The Alamo location");
-        Collection<Seat> seats = new ArrayList<>();
+        eventRepository.save(event);
+
         for (int i = 1; i <= 10; i++) {
             var seat = new Seat();
-            seat.setEvent(event);
+            seat.setEvent(event.getId());
             seat.setLabel("Seat " + i);
             seat.setPrice(BigDecimal.TEN.multiply(BigDecimal.valueOf(i)));
-            seats.add(seat);
+            seatRepository.save(seat);
         }
-
-        event.setSeats(seats);
-        eventRepository.save(event);
 
         var ticketUser = new TicketUser();
         ticketUser.setFullName("El Hadji NDONGO");

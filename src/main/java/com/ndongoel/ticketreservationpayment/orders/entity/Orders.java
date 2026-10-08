@@ -23,17 +23,16 @@ public class Orders {
     @OneToMany
     private Collection<Seat> seat;
     private BigDecimal amount;
+    @Column(name = "user_id",nullable = false)
+    long ticketUserID;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    TicketUser ticketUser;
 
-
-    public TicketUser getTicketUser() {
-        return ticketUser;
+    public long getTicketUserID() {
+        return ticketUserID;
     }
 
-    public void setTicketUser(TicketUser ticketUser) {
-        this.ticketUser = ticketUser;
+    public void setTicketUser(long ticketUserID) {
+        this.ticketUserID = ticketUserID;
     }
 
     public Collection<Seat> getSeat() {
