@@ -4,12 +4,16 @@ import com.ndongoel.ticketreservationpayment.user.model.TicketUser;
 import com.ndongoel.ticketreservationpayment.wallet.enums.WalletStatus;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 
 /*
 * See wallet.md
 * */
+@Setter
+@Getter
 @Entity
 public class Wallet {
     @Id  @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,8 +23,7 @@ public class Wallet {
     @Enumerated(EnumType.STRING)
     private WalletStatus status;
 
-    @OneToOne
-    @NotBlank
+    @OneToOne(optional = false)
     private TicketUser user;
 
     public void debit(BigDecimal cents) {
@@ -38,35 +41,4 @@ public class Wallet {
     }
 
 
-    public BigDecimal getBalanceCents() {
-        return balanceCents;
-    }
-
-    public void setBalanceCents(BigDecimal balanceCents) {
-        this.balanceCents = balanceCents;
-    }
-
-    public TicketUser getUser() {
-        return user;
-    }
-
-    public void setUser(TicketUser user) {
-        this.user = user;
-    }
-
-    public WalletStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(WalletStatus status) {
-        this.status = status;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
-    }
 }

@@ -26,8 +26,8 @@ public class EventController {
     }
 
     @GetMapping("/{eventID}/seats")
-    Collection<Seat> getFreeSeats(@PathVariable long eventID) {
-        return eventService.getSeats(eventID);
+    Collection<Seat> getFreeSeats(@PathVariable long eventID,@RequestParam(required = false) String status) {
+        return eventService.getSeats(eventID,status);
     }
 
     @PostMapping("/{eventID}")

@@ -46,7 +46,7 @@ public class TicketReservationPaymentApplication implements CommandLineRunner {
 
         for (int i = 1; i <= 10; i++) {
             var seat = new Seat();
-            seat.setEvent(event.getId());
+            seat.setEventID(event.getId());
             seat.setLabel("Seat " + i);
             seat.setPrice(BigDecimal.TEN.multiply(BigDecimal.valueOf(i)));
             seatRepository.save(seat);

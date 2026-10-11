@@ -1,11 +1,15 @@
 package com.ndongoel.ticketreservationpayment.event.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 
+@Setter
+@Getter
 @Entity
 public class Event {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,51 +23,4 @@ public class Event {
     private Collection<Seat> seats = new ArrayList<>();
 
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public LocalDateTime getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDateTime date) {
-        this.date = date;
-    }
-
-    public Collection<Seat> getSeats() {
-        return seats;
-    }
-
-    public void setSeats(Collection<Seat> seats) {
-        this.seats = seats;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
-    }
 }

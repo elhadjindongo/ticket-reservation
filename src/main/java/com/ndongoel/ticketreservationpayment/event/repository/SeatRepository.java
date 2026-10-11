@@ -17,4 +17,7 @@ public interface SeatRepository extends JpaRepository<Seat, Long> {
    List<Seat> findFreeSeatByEventID(@Param("eventId") long eventId,@Param("heldDate") LocalDateTime heldDate);
 
    Optional<Seat> findSeatByIdAndStatus(long eventID, SeatStatus status);
+   List<Seat> findAllByEventID(long eventID);
+
+   Collection<Seat> findAllByEventIDAndStatus(long eventID, SeatStatus seatStatus);
 }
